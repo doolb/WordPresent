@@ -88,11 +88,38 @@ namespace WordPresent.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Present.
+        /// </summary>
+        internal static string btnPresent {
+            get {
+                return ResourceManager.GetString("btnPresent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Table.
+        /// </summary>
+        internal static string cmbTable {
+            get {
+                return ResourceManager.GetString("cmbTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Can&apos;t open &quot;Default&quot; Table, please select a invalid database file..
         /// </summary>
         internal static string msgDefaultTableNoFound {
             get {
                 return ResourceManager.GetString("msgDefaultTableNoFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Table:{0}, Row: {1}.
+        /// </summary>
+        internal static string msgPresentError {
+            get {
+                return ResourceManager.GetString("msgPresentError", resourceCulture);
             }
         }
     }

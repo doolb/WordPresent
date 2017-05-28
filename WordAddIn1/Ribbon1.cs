@@ -25,9 +25,12 @@ namespace WordPresent
         private void Ribbon1_Load(object sender, RibbonUIEventArgs e)
         {
             // update ui
-            Globals.Ribbons.Ribbon1.btnDataBase.Label = res.btnDataBase;
-            Globals.Ribbons.Ribbon1.btnDataBase.ScreenTip = res.btnDataBase_tip;
-            Globals.Ribbons.Ribbon1.btnDataBase.SuperTip = res.btnDataBase_tip_content;
+            this.btnDataBase.Label = res.btnDataBase;
+            this.btnDataBase.ScreenTip = res.btnDataBase_tip;
+            this.btnDataBase.SuperTip = res.btnDataBase_tip_content;
+
+            this.btnPresent.Label = res.btnPresent;
+            this.cmbTables.Label = res.cmbTable;
 
             App = Globals.ThisAddIn.Application;
         }
@@ -85,35 +88,45 @@ namespace WordPresent
 
             Globals.ThisAddIn.Application.Selection.InsertAfter("\n");
 
-            foreach(Data d in DataBase.instance.dataList)
+            int i = 0;
+            try
             {
-                string type = d.type;
-                if(type == null) continue;
+                //foreach (Data d in DataBase.instance.dataList)
+                for (; i < DataBase.instance.dataList.Count;i++ )
+                {
+                    Data d = DataBase.instance.dataList[i];
+                    string type = d.type;
+                    if (type == null) continue;
 
-                switch (type.ToLower())
-                {                
-                    case "txt":
-                        Globals.ThisAddIn.Application.Selection.InsertAfter(d.data + '\n');
-                        App.Selection.set_Style(DataBase.instance.formatDictionary[d.format].style);
-                        Globals.ThisAddIn.Application.Selection.Collapse(WdCollapseDirection.wdCollapseEnd);
-                        break;
+                    switch (type.ToLower())
+                    {
+                        case "txt":
+                            Globals.ThisAddIn.Application.Selection.InsertAfter(d.data + '\n');
+                            App.Selection.set_Style(DataBase.instance.formatDictionary[d.format].style);
+                            Globals.ThisAddIn.Application.Selection.Collapse(WdCollapseDirection.wdCollapseEnd);
+                            break;
 
-                    case "img":
-                        var shape = Globals.ThisAddIn.Application.Selection.InlineShapes.AddPicture(Path.Combine(img_dir,d.data));
+                        case "img":
+                            var shape = Globals.ThisAddIn.Application.Selection.InlineShapes.AddPicture(Path.Combine(img_dir, d.data));
 
-                        // set img size
-                        shape.Width =App.InchesToPoints(DataBase.instance.formatDictionary[d.format].width);
-                        shape.Height=App.InchesToPoints(DataBase.instance.formatDictionary[d.format].height);
+                            // set img size
+                            shape.Width = App.InchesToPoints(DataBase.instance.formatDictionary[d.format].width);
+                            shape.Height = App.InchesToPoints(DataBase.instance.formatDictionary[d.format].height);
 
-                        break;
-                    
-                    case "br":
-                        App.Selection.InsertAfter("\n");
-                        App.Selection.Collapse(WdCollapseDirection.wdCollapseEnd);
-                        break;
-                    case "end":
-                        return;
+                            break;
+
+                        case "br":
+                            App.Selection.InsertAfter("\n");
+                            App.Selection.Collapse(WdCollapseDirection.wdCollapseEnd);
+                            break;
+                        case "end":
+                            return;
+                    }
                 }
+            }
+            catch(Exception _e)
+            {
+                MessageBox.Show(_e.Message,string.Format(res.msgPresentError, DataBase.instance.selectTableName, i+1));
             }
         }
 

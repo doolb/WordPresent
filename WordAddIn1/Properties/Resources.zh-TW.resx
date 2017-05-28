@@ -118,24 +118,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="btnDataBase" xml:space="preserve">
-    <value>Excel file</value>
+    <value>Excel 文件</value>
   </data>
   <data name="btnDataBase_tip" xml:space="preserve">
-    <value>Select a Excel file</value>
+    <value>选择一个 Excel 文件</value>
   </data>
   <data name="btnDataBase_tip_content" xml:space="preserve">
-    <value>select a Excel file</value>
+    <value>选择一个 Excel 文件</value>
   </data>
   <data name="btnPresent" xml:space="preserve">
-    <value>Present</value>
+    <value>呈現</value>
   </data>
   <data name="cmbTable" xml:space="preserve">
-    <value>Table</value>
+    <value>表名</value>
   </data>
   <data name="msgDefaultTableNoFound" xml:space="preserve">
-    <value>Can't open "Default" Table, please select a invalid database file.</value>
+    <value>一些重要的表丢失,请重新选择一个有效的文件</value>
   </data>
   <data name="msgPresentError" xml:space="preserve">
-    <value>Table:{0}, Row: {1}</value>
+    <value>表名:{0}, 行: {1}</value>
   </data>
 </root>
